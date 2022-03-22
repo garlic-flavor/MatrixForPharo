@@ -293,6 +293,16 @@ GFMatrix4x4 class >> translateX: x y: y z: z [
 		yourself
 ]
 
+{ #category : #arithmetic }
+GFMatrix4x4 >> * right [
+	(right class includesBehavior: GFMatrix4x4) ifTrue: [
+		^ self multiplied: right
+	].
+	(right class includesBehavior: GFVector3) ifTrue: [
+		^ self multipliedVector: right
+	]
+]
+
 { #category : #accessing }
 GFMatrix4x4 >> _11 [
 
