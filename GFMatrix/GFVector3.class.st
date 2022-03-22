@@ -164,6 +164,16 @@ GFVector3 >> length [
 ]
 
 { #category : #'as yet unclassified' }
+GFVector3 >> normalize [
+	|l1|
+	l1 := 1.0 / self length.
+	self
+		x: self x * l1;
+		y: self y * l1;
+		z: self z * l1
+]
+
+{ #category : #'as yet unclassified' }
 GFVector3 >> normalized [
 	|l1|
 	l1 := 1.0 / self length.
