@@ -13,16 +13,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-GFPolyline3 class >> circleVertices: density [
-	|vert step|
-	vert := OrderedCollection new: density.
-	step := Float pi * 2 / (density - 1).
-	0 to: density do: [ :i |
-		vert add: (GFVector3 x: (i * step) cos y: (i * step) sin z: 0.0).
-	]
-]
-
-{ #category : #'as yet unclassified' }
 GFPolyline3 class >> cube [
 	^ self new
 		vertices: {

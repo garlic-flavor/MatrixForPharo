@@ -18,6 +18,15 @@ Class {
 	#category : #GFMatrix
 }
 
+{ #category : #'accessing - structure variables' }
+GFVector3 class >> x [
+	^ self new
+		x: 1.0;
+		y: 0.0;
+		z: 0.0;
+		yourself
+]
+
 { #category : #'instance creation' }
 GFVector3 class >> x: x y: y z: z [
 	^ self new
