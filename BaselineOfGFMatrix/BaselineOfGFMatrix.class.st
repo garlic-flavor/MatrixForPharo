@@ -11,7 +11,8 @@ BaselineOfGFMatrix >> baseline: spec [
 		for: #common
 		do: [
 			spec
-				package: 'GFMatrix'
+				package: 'GFMatrix';
+				package: 'GFMatrix-Test' with: [ spec requires: #( 'GFMatrix' ) ]
 		]
 ]
 
