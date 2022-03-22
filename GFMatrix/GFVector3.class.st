@@ -27,6 +27,33 @@ GFVector3 class >> x: x y: y z: z [
 		yourself
 ]
 
+{ #category : #'accessing - structure variables' }
+GFVector3 class >> y [
+	^ self new
+		x: 0.0;
+		y: 1.0;
+		z: 0.0;
+		yourself
+]
+
+{ #category : #'accessing - structure variables' }
+GFVector3 class >> z: z [
+	^ self new
+		x: 0.0;
+		y: 0.0;
+		z: z;
+		yourself
+]
+
+{ #category : #'instance creation' }
+GFVector3 class >> zero [
+	^ self new
+		x: 0.0;
+		y: 0.0;
+		z: 0.0;
+		yourself
+]
+
 { #category : #adding }
 GFVector3 >> * right [
 	^ self class
@@ -239,7 +266,7 @@ GFVector3 >> subtractedVector: right [
 { #category : #accessing }
 GFVector3 >> x [
 
-	^ x ifNil: [ x := 0.0 ]
+	^ x
 ]
 
 { #category : #accessing }
@@ -251,7 +278,7 @@ GFVector3 >> x: anObject [
 { #category : #accessing }
 GFVector3 >> y [
 
-	^ y ifNil: [ y := 0.0 ]
+	^ y
 ]
 
 { #category : #accessing }
@@ -263,7 +290,7 @@ GFVector3 >> y: anObject [
 { #category : #accessing }
 GFVector3 >> z [
 
-	^ z ifNil: [ z := 0.0 ]
+	^ z
 ]
 
 { #category : #accessing }
