@@ -33,6 +33,126 @@ GFPolyline3 class >> cube [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+GFPolyline3 class >> cubeVertices: numLines [
+	|step vert|
+	step := 2.0 / (numLines - 1).
+	vert := OrderedCollection new: numLines * 12.
+	"roof - Z"
+	0 to: (numLines - 1) do: [:i |
+		vert add: (GFVector3 x: -1 y: 1 z: -1 + (step * i))
+	].
+	0 to: (numLines - 1) do: [ :i |
+		vert add: (GFVector3 x: 1 y: 1 z: -1 + (step * i))
+	].
+
+	"floor - Z"
+	0 to: (numLines - 1) do: [:i |
+		vert add: (GFVector3 x: -1 y: -1 z: -1 + (step * i))
+	].
+	0 to: (numLines - 1) do: [ :i |
+		vert add: (GFVector3 x: 1 y: -1 z: -1 + (step * i))
+	].
+
+	"roof - X"
+	0 to: (numLines - 1) do: [:i |
+		vert add: (GFVector3 x: -1 + (step * i) y: 1 z: -1)
+	].
+	0 to: (numLines - 1) do: [ :i |
+		vert add: (GFVector3 x: -1 + (step * i) y: 1 z: 1)
+	].
+	"floor - X"
+	0 to: (numLines - 1) do: [:i |
+		vert add: (GFVector3 x: -1 + (step * i) y: -1 z: -1)
+	].
+	0 to: (numLines - 1) do: [ :i |
+		vert add: (GFVector3 x: -1 + (step * i) y: -1 z: 1)
+	].
+
+	"pillar"
+	0 to: (numLines - 1) do: [:i |
+		vert add: (GFVector3 x: -1 y: -1 + (step * i) z: -1)
+	].
+	0 to: (numLines - 1) do: [ :i |
+		vert add: (GFVector3 x: 1 y: -1 + (step * i) z: -1)
+	].
+	0 to: (numLines - 1) do: [:i |
+		vert add: (GFVector3 x: -1 y: -1 + (step * i) z: 1)
+	].
+	0 to: (numLines - 1) do: [ :i |
+		vert add: (GFVector3 x: 1 y: -1 + (step * i) z: 1)
+	].
+
+	^ vert
+]
+
+{ #category : #'as yet unclassified' }
+GFPolyline3 class >> roomA: numLines [
+	|vert idx|
+	vert := self cubeVertices: numLines.
+	idx := OrderedCollection new: numLines * 2 * 8.
+	"roof - Z"
+	1 to: numLines do: [:i |
+		idx
+			add: i;
+			add: i + numLines
+	].
+
+	"floor - Z"
+	1 to: numLines do: [:i |
+		idx
+			add: i + (numLines * 2);
+			add: i + (numLines * 3)
+	].
+
+	"roof - X"
+	1 to: numLines do: [:i |
+		idx
+			add: i + (numLines * 4);
+			add: i + (numLines * 5)
+	].
+
+	"floor - X"
+	1 to: numLines do: [:i |
+		idx
+			add: i + (numLines * 6);
+			add: i + (numLines * 7)
+	].
+
+	"wall E - yoko"
+	1 to: numLines do: [ :i |
+		idx
+			add: i + (numLines * 8);
+			add: i + (numLines * 9)
+	].
+	"wall N - yoko"
+	1 to: numLines do: [ :i |
+		idx
+			add: i + (numLines * 8);
+			add: i + (numLines * 10)
+	].
+
+	"wall E - tate"
+	1 to: numLines do: [ :i |
+		idx
+			add: i + (numLines * 4);
+			add: i + (numLines * 6)
+	].	
+
+	"wall N - tate"
+	1 to: numLines do: [ :i |
+		idx
+			add: i;
+			add: i + (numLines * 2)
+	].	
+	
+
+	^ self new
+		vertices: vert;
+		indices: idx;
+		yourself
+]
+
 { #category : #accessing }
 GFPolyline3 >> indices [
 
