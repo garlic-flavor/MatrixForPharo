@@ -48,7 +48,7 @@ GFWorld >> local: anObject [
 { #category : #accessing }
 GFWorld >> m [
 
-	^ m ifNil: [ m := projection * camera * local ]
+	^ m ifNil: [ m := self projection * self camera * self local ]
 ]
 
 { #category : #accessing }

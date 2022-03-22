@@ -214,6 +214,35 @@ GFMatrix4x4 class >> perspectiveFovy: fovy asp: asp near: n far: f [
 ]
 
 { #category : #'as yet unclassified' }
+GFMatrix4x4 class >> perspectiveFovyRad: fovy asp: asp near: n far: f [
+	|f1 fn1|
+	f1 := 1/((fovy*0.5) tan).
+	fn1 := 1/(f-n).
+	^ self new
+		_11: f1/asp;
+		_12: 0.0;
+		_13: 0.0;
+		_14: 0.0;
+
+		_21: 0.0;
+		_22: f1;
+		_23: 0.0;
+		_24: 0.0;
+		
+		_31: 0.0;
+		_32: 0.0;
+		_33: -1 * (f+n)*fn1;
+		_34: -1.0;
+
+		_41: 0.0;
+		_42: 0.0;
+		_43: -2*f*n*fn1;
+		_44: 0.0;
+		yourself
+
+]
+
+{ #category : #'as yet unclassified' }
 GFMatrix4x4 class >> rotate: angle axis: a [
 	|c s c1|
 	c := angle cos.
