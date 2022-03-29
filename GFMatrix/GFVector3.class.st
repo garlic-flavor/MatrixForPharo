@@ -46,6 +46,15 @@ GFVector3 class >> y [
 ]
 
 { #category : #'accessing - structure variables' }
+GFVector3 class >> z [
+	^ self new
+		x: 0.0;
+		y: 0.0;
+		z: 1.0;
+		yourself
+]
+
+{ #category : #'accessing - structure variables' }
 GFVector3 class >> z: z [
 	^ self new
 		x: 0.0;
@@ -211,8 +220,11 @@ GFVector3 >> normalize [
 
 { #category : #'as yet unclassified' }
 GFVector3 >> normalized [
-	|l1|
-	l1 := 1.0 / self length.
+	|l l1|
+	l := self length.
+	l1 := l = 0 ifTrue: [
+		^ GFVector3 z
+	] ifFalse: [ 1.0 / l ].
 	^ self class
 		x: self x * l1
 		y: self y * l1

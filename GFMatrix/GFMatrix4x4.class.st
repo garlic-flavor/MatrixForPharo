@@ -599,8 +599,9 @@ GFMatrix4x4 >> multiplied: r [
 
 { #category : #'as yet unclassified' }
 GFMatrix4x4 >> multipliedVector: v [
-	|w|
-	w := 1 / ((_14 * v x) + (_24 * v y) + (_34 * v z) + _44 ).
+	|w1 w|
+	w1 := (_14 * v x) + (_24 * v y) + (_34 * v z) + _44.
+	w := w1 = 0 ifTrue: [ ^ GFVector3 zero ] ifFalse: [ 1 / w1 ].
 	^ GFVector3
 		x: ((_11 * v x) + (_21 * v y) + (_31 * v z) + _41) * w
 		y: ((_12 * v x) + (_22 * v y) + (_32 * v z) + _42) * w

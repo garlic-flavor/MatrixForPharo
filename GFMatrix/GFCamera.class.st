@@ -45,6 +45,11 @@ GFCamera >> from: pos [
 	self camera: (GFMatrix4x4 lookAt: GFVector3 zero from: pos up: GFVector3 y)
 ]
 
+{ #category : #'instance creation' }
+GFCamera >> from: pos to: to [
+	self camera: (GFMatrix4x4 lookAt: to from: pos up: GFVector3 y)
+]
+
 { #category : #accessing }
 GFCamera >> height [
 

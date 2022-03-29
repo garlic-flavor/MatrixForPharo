@@ -11,9 +11,25 @@ Class {
 GFChess class >> new: size w: w h: h [
 	|squares|
 	squares := OrderedCollection new: ((w // 2 + 1) * h).
-	1 to: h do: [ : y |
-		1 to: w do: [ :x |
+	0 to: (h - 1) do: [ : y |
+		0 to: (w - 1) do: [ :x |
 			(y % 2) = (x % 2) ifTrue: [
+				squares add: (self squareVerticesX: (size * x) y: (size * y) size: size).
+			]
+		]
+	].
+	^ self new
+		squares: squares;
+		yourself
+]
+
+{ #category : #'instance creation' }
+GFChess class >> newShifted: size w: w h: h [
+	|squares|
+	squares := OrderedCollection new: ((w // 2 + 1) * h).
+	0 to: (h - 1) do: [ : y |
+		0 to: (w - 1) do: [ :x |
+			(y % 2) ~= (x % 2) ifTrue: [
 				squares add: (self squareVerticesX: (size * x) y: (size * y) size: size).
 			]
 		]
