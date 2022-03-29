@@ -3,11 +3,9 @@ define polylines for GFCanvas3
 "
 Class {
 	#name : #GFPolyline3,
-	#superclass : #Object,
+	#superclass : #GFVertex,
 	#instVars : [
-		'vertices',
-		'indices',
-		'local'
+		'indices'
 	],
 	#category : #GFMatrix
 }
@@ -31,59 +29,6 @@ GFPolyline3 class >> cube [
 			1. 5. 2. 6. 3. 7. 4. 8
 		};
 		yourself
-]
-
-{ #category : #'as yet unclassified' }
-GFPolyline3 class >> cubeVertices: numLines [
-	|step vert|
-	step := 2.0 / (numLines - 1).
-	vert := OrderedCollection new: numLines * 12.
-	"roof - Z"
-	0 to: (numLines - 1) do: [:i |
-		vert add: (GFVector3 x: -1 y: 1 z: -1 + (step * i))
-	].
-	0 to: (numLines - 1) do: [ :i |
-		vert add: (GFVector3 x: 1 y: 1 z: -1 + (step * i))
-	].
-
-	"floor - Z"
-	0 to: (numLines - 1) do: [:i |
-		vert add: (GFVector3 x: -1 y: -1 z: -1 + (step * i))
-	].
-	0 to: (numLines - 1) do: [ :i |
-		vert add: (GFVector3 x: 1 y: -1 z: -1 + (step * i))
-	].
-
-	"roof - X"
-	0 to: (numLines - 1) do: [:i |
-		vert add: (GFVector3 x: -1 + (step * i) y: 1 z: -1)
-	].
-	0 to: (numLines - 1) do: [ :i |
-		vert add: (GFVector3 x: -1 + (step * i) y: 1 z: 1)
-	].
-	"floor - X"
-	0 to: (numLines - 1) do: [:i |
-		vert add: (GFVector3 x: -1 + (step * i) y: -1 z: -1)
-	].
-	0 to: (numLines - 1) do: [ :i |
-		vert add: (GFVector3 x: -1 + (step * i) y: -1 z: 1)
-	].
-
-	"pillar"
-	0 to: (numLines - 1) do: [:i |
-		vert add: (GFVector3 x: -1 y: -1 + (step * i) z: -1)
-	].
-	0 to: (numLines - 1) do: [ :i |
-		vert add: (GFVector3 x: 1 y: -1 + (step * i) z: -1)
-	].
-	0 to: (numLines - 1) do: [:i |
-		vert add: (GFVector3 x: -1 y: -1 + (step * i) z: 1)
-	].
-	0 to: (numLines - 1) do: [ :i |
-		vert add: (GFVector3 x: 1 y: -1 + (step * i) z: 1)
-	].
-
-	^ vert
 ]
 
 { #category : #'as yet unclassified' }
@@ -163,28 +108,4 @@ GFPolyline3 >> indices [
 GFPolyline3 >> indices: anObject [
 
 	indices := anObject
-]
-
-{ #category : #accessing }
-GFPolyline3 >> local [
-
-	^ local ifNil: [ local := GFMatrix4x4 identity ]
-]
-
-{ #category : #accessing }
-GFPolyline3 >> local: anObject [
-
-	local := anObject
-]
-
-{ #category : #accessing }
-GFPolyline3 >> vertices [
-
-	^ vertices ifNil: [ vertices := OrderedCollection new ]
-]
-
-{ #category : #accessing }
-GFPolyline3 >> vertices: anObject [
-
-	vertices := anObject
 ]
