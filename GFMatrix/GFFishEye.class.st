@@ -17,7 +17,7 @@ GFFishEye >> * v [
 	0 < dot ifTrue: [ ^ self viewport * pos ].
 	rotateAxis := np cross: self lensCenter.
 	angle := rotateAxis length * self extraAngle.
-	pos := pos rotate: angle axis: rotateAxis.
+	pos := pos rotate: angle axis: rotateAxis normalized.
 
 	^ self viewport * pos
 ]
