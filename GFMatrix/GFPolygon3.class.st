@@ -29,6 +29,25 @@ GFPolygon3 class >> circleVertices: density [
 	^ vert
 ]
 
+{ #category : #shapes }
+GFPolygon3 class >> square [
+	^ self new
+		vertices: (self squareVertices: 1);
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
+GFPolygon3 class >> squareVertices: size [
+	^ {
+		0@0@0.
+		1@0@0.
+		1@1@0.
+		0@1@0.
+		0@0@0.
+	}
+	
+]
+
 { #category : #accessing }
 GFPolygon3 >> local [
 
