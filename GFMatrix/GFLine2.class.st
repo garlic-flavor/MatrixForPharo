@@ -74,7 +74,7 @@ GFLine2 >> croppedBy: rect [
 
 { #category : #'as yet unclassified' }
 GFLine2 >> crossPointWith: line [
-	|dir distance d1 d2 c1 c2 s1 s2|
+	|dir distance d1 d2 c1 c2 s1 s2 v|
 	distance := start distanceTo: line start.
 	distance = 0 ifTrue: [ ^ 0 ].
 	dir := (line start - start) / distance.
@@ -86,7 +86,8 @@ GFLine2 >> crossPointWith: line [
 	c2 := d2 dotProduct: dir * -1.
 	s1 := d1 crossProduct: dir.
 	s2 := d2 crossProduct: dir.
-	^ (distance * s2) / ((c1 * s2) + (s1 * c2)).
+	v := (c1 * s2) + (s1 * c2).
+	^ v = 0 ifTrue: [ 0 ] ifFalse: [ (distance * s2) / v ].
 ]
 
 { #category : #accessing }
