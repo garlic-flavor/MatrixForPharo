@@ -12,5 +12,5 @@ GFSquare3 class >> new: size x: x y: y [
 
 { #category : #drawing }
 GFSquare3 >> drawOn: canvas [
-	canvas drawSquare3: self
+	canvas drawPolygon3: self
 ]
