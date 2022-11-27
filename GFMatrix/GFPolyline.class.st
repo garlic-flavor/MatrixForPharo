@@ -1,14 +1,14 @@
-"
-define polylines for GFCanvas3
-"
 Class {
-	#name : #GFPolyline3,
-	#superclass : #GFPolyline,
+	#name : #GFPolyline,
+	#superclass : #GFVertex,
+	#instVars : [
+		'indices'
+	],
 	#category : #GFMatrix
 }
 
 { #category : #'as yet unclassified' }
-GFPolyline3 class >> cube [
+GFPolyline class >> cube [
 	^ self new
 		vertices: {
 			GFVector3 x: -1 y: 1 z: 1.
@@ -29,7 +29,7 @@ GFPolyline3 class >> cube [
 ]
 
 { #category : #'as yet unclassified' }
-GFPolyline3 class >> roomA: numLines [
+GFPolyline class >> roomA: numLines [
 	|vert idx|
 	vert := self cubeVertices: numLines.
 	idx := OrderedCollection new: numLines * 2 * 8.
@@ -93,4 +93,16 @@ GFPolyline3 class >> roomA: numLines [
 		vertices: vert;
 		indices: idx;
 		yourself
+]
+
+{ #category : #accessing }
+GFPolyline >> indices [
+
+	^ indices ifNil: [ indices := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+GFPolyline >> indices: anObject [
+
+	indices := anObject
 ]
